@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OZAMA Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <div id="admin-panel" class="bg-slate-800 text-white p-6 shadow-2xl sticky top-0 z-50 transition-all">
+        <div class="max-w-7xl mx-auto flex flex-wrap gap-4 items-center justify-between">
+            <h2 class="font-bold text-cyan-400">🛠️ 网页实时后台控制</h2>
+            <div class="flex gap-4">
+                <input id="new-title" type="text" placeholder="修改大标题" class="bg-slate-700 p-2 rounded text-sm outline-none border border-slate-600 focus:border-cyan-400">
+                <select id="theme-color" class="bg-slate-700 p-2 rounded text-sm">
+                    <option value="#00a8b5">海洋青 (Default)</option>
+                    <option value="#b45309">琥珀金 (Añejo)</option>
+                    <option value="#1e293b">深邃黑 (Premium)</option>
+                </select>
+                <button onclick="updateWebsite()" class="bg-cyan-500 hover:bg-cyan-400 px-4 py-2 rounded text-sm font-bold text-slate-900 transition">发布更改</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="website-content" class="p-12 transition-all duration-500">
+        <div class="max-w-4xl mx-auto bg-white p-10 rounded-3xl shadow-lg border border-gray-200">
+            <h1 id="main-title" class="text-5xl font-black mb-6 text-[#00a8b5]">OZAMA Ron Dominicano</h1>
+            <p class="text-gray-500 text-lg leading-relaxed">这是你的产品展示区。你可以通过顶部的后台面板实时修改这里的文字和颜色主题。</p>
+            
+            <div class="mt-8 p-6 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200 text-center">
+                <p class="text-sm text-gray-400 italic">如果你对接了 API，这里的修改将永久保存到数据库中。</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 这段简单的 JavaScript 就是你的“后台逻辑”
+        function updateWebsite() {
+            const newTitle = document.getElementById('new-title').value;
+            const newColor = document.getElementById('theme-color').value;
+
+            // 1. 修改标题
+            if(newTitle) {
+                document.getElementById('main-title').innerText = newTitle;
+            }
+
+            // 2. 修改主色调
+            document.getElementById('main-title').style.color = newColor;
+            
+            // 提示用户
+            alert('发布成功！GEO 结构化数据已同步更新（模拟）。');
+            
+            // 在实际 GEO 优化中，这里还会调用 API 通知 Google 重新抓取
+            console.log("Calling Google Indexing API for color: " + newColor);
+        }
+    </script>
+</body>
+</html>
